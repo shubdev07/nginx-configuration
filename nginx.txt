@@ -1,0 +1,28 @@
+server {
+
+	listen 9000;
+	server_name localhost;
+	root /usr/share/nginx/ice-and-fire;
+	index index.html;
+
+	location / {
+
+		try_files $uri $uri/ =404;
+	}
+
+	#error page 404
+
+	error_page 404 /404.html;
+	location = /404.html {
+		root /usr/share/nginx/ice-and-fire;
+		internal;
+	}
+
+	#error page 500
+
+	error_page 500 502 503 504 /500.html;
+	location = /500.html {
+		root /usr/share/nginx/ice-and-fire;
+		internal;
+	}
+}
